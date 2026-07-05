@@ -10,7 +10,7 @@ This repository contains my Data Structures and Algorithms (DSA) practice in C++
 ## Topics
 
 - ✅ Arrays
-- ⏳ Strings
+- ✅Strings
 - ⏳ Sorting
 - ⏳ Binary Search
 - ⏳ Hashing
