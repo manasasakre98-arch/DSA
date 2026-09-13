@@ -30,163 +30,84 @@
 // Pushing onto a full stack (handled with isFull() check)
 // Stack of size 0 or 1
 
-// #include <iostream>
-// using namespace std;
-
-// class Stack {
-// private:
-//     int* arr;       // underlying array
-//     int capacity;   // max size of stack
-//     int top;        // index of the top element (-1 when empty)
-
-// public:
-//     // Constructor: allocate array of given size
-//     Stack(int size) {
-//         capacity = size;
-//         arr = new int[capacity];
-//         top = -1;
-//     }
-
-//     // Destructor: free allocated memory
-//     ~Stack() {
-//         delete[] arr;
-//     }
-
-//     // Push an element onto the stack
-//     void push(int value) {
-//         if (isFull()) {
-//             cout << "Stack Overflow: cannot push " << value << endl;
-//             return;
-//         }
-//         arr[++top] = value;   // increment top, then place value
-//     }
-
-//     // Remove and return the top element
-//     int pop() {
-//         if (isEmpty()) {
-//             cout << "Stack Underflow: cannot pop" << endl;
-//             return -1;         // sentinel value for empty stack
-//         }
-//         return arr[top--];    // return current top, then decrement
-//     }
-
-//     // Return the top element without removing it
-//     int peek() {
-//         if (isEmpty()) {
-//             cout << "Stack is empty" << endl;
-//             return -1;
-//         }
-//         return arr[top];
-//     }
-
-//     // Check if stack is empty
-//     bool isEmpty() {
-//         return top == -1;
-//     }
-
-//     // Check if stack is full
-//     bool isFull() {
-//         return top == capacity - 1;
-//     }
-
-//     // Return current number of elements
-//     int size() {
-//         return top + 1;
-//     }
-// };
-
-// int main() {
-//     Stack st(5);   // create stack with capacity 5
-
-//     st.push(10);
-//     st.push(20);
-//     st.push(30);
-
-//     cout << "Top element: " << st.peek() << endl;   // 30
-//     cout << "Popped: " << st.pop() << endl;          // 30
-//     cout << "Top element after pop: " << st.peek() << endl; // 20
-//     cout << "Stack size: " << st.size() << endl;      // 2
-//     cout << "Is empty? " << (st.isEmpty() ? "Yes" : "No") << endl; // No
-
-//     return 0;
-// }
-
-#include<iostream>
+#include <iostream>
 using namespace std;
 
-class Stack{
-    private:
-        int* arr;
-        int capacity;
-        int top;
-
+class Stack {
+private:
+    int* arr;       // underlying array
+    int capacity;   // max size of stack
+    int top;        // index of the top element (-1 when empty)
 
 public:
-    Stack(int size){
+    // Constructor: allocate array of given size
+    Stack(int size) {
         capacity = size;
         arr = new int[capacity];
         top = -1;
     }
 
-    ~Stack(){
+    // Destructor: free allocated memory
+    ~Stack() {
         delete[] arr;
     }
 
-    void push(int value){
-        if(isFull()){
+    // Push an element onto the stack
+    void push(int value) {
+        if (isFull()) {
             cout << "Stack Overflow: cannot push " << value << endl;
             return;
         }
-        arr[++top] = value;
+        arr[++top] = value;   // increment top, then place value
     }
 
-    int pop(){
-        if(isEmpty()){
+    // Remove and return the top element
+    int pop() {
+        if (isEmpty()) {
             cout << "Stack Underflow: cannot pop" << endl;
-            return -1;
+            return -1;         // sentinel value for empty stack
         }
-        return arr[top--];
+        return arr[top--];    // return current top, then decrement
     }
 
-    int peek(){
-        if(isEmpty()){
+    // Return the top element without removing it
+    int peek() {
+        if (isEmpty()) {
             cout << "Stack is empty" << endl;
             return -1;
         }
         return arr[top];
     }
 
-    bool isEmpty(){
+    // Check if stack is empty
+    bool isEmpty() {
         return top == -1;
     }
 
-    bool isFull(){
+    // Check if stack is full
+    bool isFull() {
         return top == capacity - 1;
     }
 
-    int size(){
+    // Return current number of elements
+    int size() {
         return top + 1;
     }
-
 };
 
-int main(){
-    Stack st(5);
+int main() {
+    Stack st(5);   // create stack with capacity 5
 
     st.push(10);
     st.push(20);
     st.push(30);
 
-    cout << "Top element: " << st.peek() << endl;
-    cout << "Popped: " << st.pop() << endl;
-    cout << "Top element after pop: " << st.peek() << endl;
-    cout << "Stack size: " << st.size() << endl;
-    cout << "Is empty? " << (st.isEmpty() ? "Yes" : "No") << endl;
+    cout << "Top element: " << st.peek() << endl;   // 30
+    cout << "Popped: " << st.pop() << endl;          // 30
+    cout << "Top element after pop: " << st.peek() << endl; // 20
+    cout << "Stack size: " << st.size() << endl;      // 2
+    cout << "Is empty? " << (st.isEmpty() ? "Yes" : "No") << endl; // No
 
     return 0;
 }
-
-
-
-
 
