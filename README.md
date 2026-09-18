@@ -12,11 +12,12 @@ This repository contains my Data Structures and Algorithms (DSA) practice in C++
 - ✅ Arrays
 - ✅ Strings
 - ✅ Sorting
-- ⏳ Binary Search
+- ✅ Sliding Window
 - ✅ Hashing
 - ✅ Recursion
-- ⏳ Linked List
+- ✅ Linked List
 - ✅ Stack
+- ✅ Two Pointers
 - ⏳ Queue
 - ⏳ Trees
 - ⏳ Graphs
