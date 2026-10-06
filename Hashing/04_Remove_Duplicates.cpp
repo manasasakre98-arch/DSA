@@ -1,6 +1,6 @@
 /*
 Problem:
-Remove duplicate elements from an array.
+Remove unsorted duplicate elements from an array.
 
 Algorithm:
 1. Read the array.
