@@ -33,7 +33,7 @@ public:
 
 int main(){
     Solution sol;
-    string s = "the sky is blue";;
+    string s = "the sky is blue";
 
     string result = sol.reverseWords(s);
     cout << "Reversed :" << result << endl;
