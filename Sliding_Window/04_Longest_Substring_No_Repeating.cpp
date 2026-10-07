@@ -14,26 +14,35 @@ Space Complexity: O(min(n, charset size)) - map holds at most one entry per uniq
 */
 
 #include<iostream>
+#include<string>
 #include<unordered_map>
 using namespace std;
 
-int longestSubstring(string s){
-    unordered_map<char, int> lastSeen;
-    int left = 0, maxLen = 0;
+class Solution{
+public:
+   int lengthOfLongestSubstring(string s){
+      unordered_map<char, int> lastSeen;
+      int left = 0, maxLen = 0;
 
-    for(int right = 0; right <s.length(); right++){
-        char c=s[right];
+      for(int right = 0; right < s.length(); right++){
+         char c = s[right];
 
-        if (lastSeen.find(c) != lastSeen.end() && lastSeen[c] >= left){
+         if(lastSeen.count(c) && lastSeen[c] >= left){
             left = lastSeen[c] + 1;
-        }
-        lastSeen[c] = right;
-        maxLen = max(maxLen, right - left + 1);
-    }
-    return maxLen;
-}
+         }
+         lastSeen[c] = right;
+         maxLen = max(maxLen, right - left + 1);
+      }
+      return maxLen;
+   }
+};
 
 int main(){
-    cout<< longestSubstring("abcabcbb");
-    return 0;
+   Solution sol;
+   string s = "abcabcbb";
+
+   int result = sol.lengthOfLongestSubstring(s);
+   cout << "Length of Longest SUbstring: " << result << endl;
+
+   return 0;
 }
