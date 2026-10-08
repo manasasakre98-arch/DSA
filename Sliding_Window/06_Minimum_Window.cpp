@@ -20,56 +20,69 @@ Space Complexity: O(|s| + |t|) — for the two hashmaps
 */
 
 #include <iostream>
+#include <string>
 #include <unordered_map>
+#include <climits>
 using namespace std;
 
-string minWindow(string s, string t) {
-    if (s.empty() || t.empty()) return "";
-    
-    unordered_map<char, int> need;
-    for (char c : t) need[c]++;
-    
-    int required = need.size();     // unique characters needed
-    int formed = 0;                  // unique characters currently satisfied
-    unordered_map<char, int> windowCounts;
-    
-    int left = 0;
-    int minLen = INT_MAX, minStart = 0;
-    
-    for (int right = 0; right < s.length(); right++) {
-        char c = s[right];
-        windowCounts[c]++;
-        
-        // check if this character's requirement is now exactly met
-        if (need.count(c) && windowCounts[c] == need[c]) {
-            formed++;
-        }
-        
-        // window is valid, try shrinking
-        while (formed == required) {
-            // record if this is the smallest window so far
-            if (right - left + 1 < minLen) {
-                minLen = right - left + 1;
-                minStart = left;
+class Solution {
+public:
+    string minWindow(string s, string t) {
+        if (s.empty() || t.empty()) return "";
+
+        // 1. What do we need?
+        unordered_map<char, int> need;
+        for (char c : t) need[c]++;
+
+        int required = need.size();
+        int formed = 0;
+
+        // 2. What do we currently have?
+        unordered_map<char, int> windowCounts;
+
+        int left = 0;
+        int minLen = INT_MAX;
+        int minStart = 0;
+
+        // 3. Expand window using right
+        for (int right = 0; right < s.size(); right++) {
+            char c = s[right];
+            windowCounts[c]++;
+
+            // Did this character complete one requirement?
+            if (need.count(c) && windowCounts[c] == need[c]) {
+                formed++;
             }
-            
-            // remove leftmost character
-            char leftChar = s[left];
-            windowCounts[leftChar]--;
-            
-            // if this drops below required count, window becomes invalid
-            if (need.count(leftChar) && windowCounts[leftChar] < need[leftChar]) {
-                formed--;
+
+            // 4. Window is valid -> try shrinking
+            while (formed == required) {
+                if (right - left + 1 < minLen) {
+                    minLen = right - left + 1;
+                    minStart = left;
+                }
+
+                char leftChar = s[left];
+                windowCounts[leftChar]--;
+
+                // Did removing it break a requirement?
+                if (need.count(leftChar) && windowCounts[leftChar] < need[leftChar]) {
+                    formed--;
+                }
+                left++;
             }
-            
-            left++;
         }
+
+        // 5. Did we find any valid window?
+        return minLen == INT_MAX ? "" : s.substr(minStart, minLen);
     }
-    
-    return minLen == INT_MAX ? "" : s.substr(minStart, minLen);
-}
+};
 
 int main() {
-    cout << minWindow("ADOBECODEBANC", "ABC");
+    Solution sol;
+    string s = "ADOBECODEBANC", t = "ABC";
+
+    string result = sol.minWindow(s, t);
+    cout << "Minimum Window Substring: " << result << endl;
+
     return 0;
 }
